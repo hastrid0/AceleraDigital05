@@ -1,0 +1,19 @@
+{
+  "name": "proyecto05",
+  "version": "1.0.0",
+  "description": "proyecto login, exit de usuarios",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hastrid0/AceleraDigital05.git"
+  },
+  "author": "Astrid Parra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hastrid0/AceleraDigital05/issues"
+  },
+  "homepage": "https://github.com/hastrid0/AceleraDigital05#readme"
+}

@@ -39,11 +39,12 @@ var controller = {
         if(!errors.isEmpty()){
             return res.status(400).json({errors:errors.array});
         }
+        let user_info = req.body;
 
         Alumnos.findOne({n_cuenta: user_info.n_cuenta}).exec((err,alumno)=>{
             if(err) return res.status(500).json({status:500,mensaje: err});
             if(alumno) return res.status(200).json({status:200, mensaje:"El numero de cuenta ya existe"});
-            let user_info = req.body;
+            //let user_info = req.body;
             var alumnos_model = new Alumnos();
 
             alumnos_model.n_cuenta = user_info.n_cuenta;

@@ -11,4 +11,4 @@ var UsuariosSchema = Schema(
     }
 );
 
-module.exports = mongoose.model('alumnos', UsuariosSchema);
+module.exports = mongoose.model('usuarios', UsuariosSchema);

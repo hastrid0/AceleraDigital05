@@ -12,7 +12,7 @@ var controller = {
             if(!usuarios) return res.status(200).json({status:200, mensaje:"No existen usuarios"});
             return res.status(200).json({
                 status:200,
-                data: alumnos
+                data: users
             });
         }); //las llaves solas traen todo
     },
@@ -20,7 +20,7 @@ var controller = {
     usuario: function(req,res){
         let n_lista = req.params.n_lista;
          
-        Alumnos.findOne({n_cuenta: n_lista}).exec((err,usuario)=>{
+        Usuarios.findOne({n_cuenta: n_lista}).exec((err,usuario)=>{
             if(err) return res.status(500).json({
                 status:500,
                 mensaje: err
@@ -28,7 +28,7 @@ var controller = {
             if(!usuario) return res.status(200).json({status:200, mensaje:"No se encontro el usuario"});
             return res.status(200).json({
                 status:200,
-                data: alumno
+                data: user
             });
         }); //las llaves solas traen todo
     },
@@ -43,7 +43,7 @@ var controller = {
 
         Usuarios.findOne({n_cuenta: user_info.n_cuenta}).exec((err,usuario)=>{
             if(err) return res.status(500).json({status:500,mensaje: err});
-            if(alumno) return res.status(200).json({status:200, mensaje:"El numero de cuenta ya existe"});
+            if(usuario) return res.status(200).json({status:200, mensaje:"El numero de cuenta ya existe"});
             //let user_info = req.body;
             var usuarios_model = new Usuarios();
 
@@ -77,7 +77,7 @@ var controller = {
             genero: user_info.genero
         }
 
-        Alumnos.findOneAndUpdate({n_cuenta:n_lista}, usuario_info_update, {new:false}, (err,usuarioUpdate)=> {
+        Usuarios.findOneAndUpdate({n_cuenta:n_lista}, usuario_info_update, {new:false}, (err,usuarioUpdate)=> {
             if(err) return res.status(500).json({message: 'Error al actualizar'});
             if(!usuarioUpdate) return res.status(404).json({message: 'No existe el usuario.'})
             return res.status(200).json({

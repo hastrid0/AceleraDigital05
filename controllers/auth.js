@@ -3,7 +3,6 @@ const {validationResult} = require('express-validator');
 
 var Usuarios = require('../models/usuarioLogin');
 var Sessions = require('../models/sessions');
-const sessions = require('../models/sessions');
 
 var controller = {
     login: function(req,res){

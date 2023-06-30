@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 
 let Sessions = require('../models/sessions');
-const sessions = require('../models/sessions');
 
 const middlewares = {
     userProtectUrl: function(req, res, next){

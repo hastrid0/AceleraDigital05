@@ -1,15 +1,15 @@
 const { validationResult } = require('express-validator');
-var Alumnos = require('../models/alumnos');
+var Usuarios = require('../models/usuarios');
 
 var controller = {
-    alumnos: function(req,res){
+    usuarios: function(req,res){
         
-        Alumnos.find({}).exec((err,alumnos)=>{
+        Usuarios.find({}).exec((err,usuarios)=>{
             if(err) return res.status(500).json({
                 status:500,
                 mensaje: err
             });
-            if(!alumnos) return res.status(200).json({status:200, mensaje:"No existen alumnos"});
+            if(!usuarios) return res.status(200).json({status:200, mensaje:"No existen usuarios"});
             return res.status(200).json({
                 status:200,
                 data: alumnos
@@ -17,15 +17,15 @@ var controller = {
         }); //las llaves solas traen todo
     },
 
-    alumno: function(req,res){
+    usuario: function(req,res){
         let n_lista = req.params.n_lista;
          
-        Alumnos.findOne({n_cuenta: n_lista}).exec((err,alumno)=>{
+        Alumnos.findOne({n_cuenta: n_lista}).exec((err,usuario)=>{
             if(err) return res.status(500).json({
                 status:500,
                 mensaje: err
             });
-            if(!alumno) return res.status(200).json({status:200, mensaje:"No se encontro el alumno"});
+            if(!usuario) return res.status(200).json({status:200, mensaje:"No se encontro el usuario"});
             return res.status(200).json({
                 status:200,
                 data: alumno
@@ -33,7 +33,7 @@ var controller = {
         }); //las llaves solas traen todo
     },
 
-    crear_alumno: function(req,res){
+    crear_usuario: function(req,res){
         //validar los datos enviados al endpoint
         const errors = validationResult(req);
         if(!errors.isEmpty()){
@@ -41,20 +41,20 @@ var controller = {
         }
         let user_info = req.body;
 
-        Alumnos.findOne({n_cuenta: user_info.n_cuenta}).exec((err,alumno)=>{
+        Usuarios.findOne({n_cuenta: user_info.n_cuenta}).exec((err,usuario)=>{
             if(err) return res.status(500).json({status:500,mensaje: err});
             if(alumno) return res.status(200).json({status:200, mensaje:"El numero de cuenta ya existe"});
             //let user_info = req.body;
-            var alumnos_model = new Alumnos();
+            var usuarios_model = new Usuarios();
 
-            alumnos_model.n_cuenta = user_info.n_cuenta;
-            alumnos_model.nombre = user_info.nombre;
-            alumnos_model.edad =user_info.edad;
-            alumnos_model.genero= user_info.genero;
+            usuarios_model.n_cuenta = user_info.n_cuenta;
+            usuarios_model.nombre = user_info.nombre;
+            usuarios_model.edad =user_info.edad;
+            usuarios_model.genero= user_info.genero;
 
-            alumnos_model.save((err,alumnoStored) => {
+            usuarios_model.save((err,usuarioStored) => {
                 if(err) return res.status(500).json({status:500,mensaje: err});
-                if(!alumnoStored) return res.status(200).json({status:200, mensaje:"No se alamceno el alumno"});
+                if(!usuarioStored) return res.status(200).json({status:200, mensaje:"No se almaceno el usuario"});
                 return res.status(200).json({
                     status:200,
                     message: "usuario almacenado"
@@ -63,7 +63,7 @@ var controller = {
     });
     },
 
-    update_alumno:function(req,res) {
+    update_usuario:function(req,res) {
         const errors = validationResult(req);
         if(!errors.isEmpty()){
             return res.status(400).jdon({errors:errors.array()});
@@ -71,28 +71,28 @@ var controller = {
         let n_lista = req.params.n_lista;
         let user_info = req.body;
 
-        let alumno_info_update = {
+        let usuario_info_update = {
             nombre: user_info.nombre,
             edad: user_info.edad,
             genero: user_info.genero
         }
 
-        Alumnos.findOneAndUpdate({n_cuenta:n_lista}, alumno_info_update, {new:false}, (err,alumnoUpdate)=> {
+        Alumnos.findOneAndUpdate({n_cuenta:n_lista}, usuario_info_update, {new:false}, (err,usuarioUpdate)=> {
             if(err) return res.status(500).json({message: 'Error al actualizar'});
-            if(!alumnoUpdate) return res.status(404).json({message: 'No existe el alumno.'})
+            if(!usuarioUpdate) return res.status(404).json({message: 'No existe el usuario.'})
             return res.status(200).json({
-                nombre: alumnoUpdate.nombre,
-                edad: alumnoUpdate.edad,
-                genero: alumnoUpdate.genero
+                nombre: usuarioUpdate.nombre,
+                edad: usuarioUpdate.edad,
+                genero: usuarioUpdate.genero
             })
         });
     },
-    delete_alumno:function(req,res){
+    delete_usuario:function(req,res){
         let n_lista = req.params.n_lista;
 
-        Alumnos.findByIdAndRemove({n_cuenta:n_lista},( err,alumnoDelete)=> {
+        Usuarios.findByIdAndRemove({n_cuenta:n_lista},( err,usuarioDelete)=> {
             if(err) return res.status(500).json({message: 'Error al eliminar'});
-            if(!alumnoDelete) return res.status(404).json({message: 'No existe el alumno.'});
+            if(!usuarioDelete) return res.status(404).json({message: 'No existe el usuario.'});
 
             return res.status(200).json({
                 message: "Usuario eliminado."

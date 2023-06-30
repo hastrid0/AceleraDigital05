@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const {validationResult} = require('express-validator');
 
-var Usuarios = require('../models/usuarios');
+var Usuarios = require('../models/usuarioLogin');
 var Sessions = require('../models/sessions');
 const sessions = require('../models/sessions');
 

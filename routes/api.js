@@ -2,28 +2,26 @@ const express = require('express');
 const api = express.Router();
 const {body} = require('express-validator');
 
-//var welcomController = require('../controllers/welcome');
-var alumnosController = require('../controllers/alumnosController');
+var usuariosController = require('../controllers/usuariosController');
 let AuthController = require('../controllers/auth');
 
 let userProtectUrl = require('../middlewares/authUser').userProtectUrl;
 
-//api.get("/", welcomController.welcome);
-api.get("/alumnos", alumnosController.alumnos);
-api.get("/alumno/:n_lista", alumnosController.alumno);
-api.post("/alumno",userProtectUrl,[
+api.get("/usuarios", usuariosController.usuarios);
+api.get("/usuario/:n_lista", usuariosController.usuario);
+api.post("/usuario",userProtectUrl,[
     body('n_cuenta').not().isEmpty(),
     body('nombre').not().isEmpty(),
     body('edad').not().isEmpty(),
     body('genero').not().isEmpty()
-], alumnosController.crear_alumno);
+], usuariosController.crear_usuario);
 
-api.put("/alumno/:n_lista", [
+api.put("/usuario/:n_lista", [
     body('nombre').not().isEmpty(),
     body('edad').not().isEmpty(),
     body('genero').not().isEmpty()
-],alumnosController.update_alumno);
-api.delete("/alumno/:n_lista", alumnosController.delete_alumno);
+],usuariosController.update_usuario);
+api.delete("/usuario/:n_lista", usuariosController.delete_usuario);
 
 api.post("/login", [
     body('mail').not().isEmpty(),

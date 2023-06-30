@@ -3,9 +3,12 @@ var Schema = mongoose.Schema;
 
 var UsuariosSchema = Schema(
     {
-        mail:{type: String, require:true, unique:true},
-        pas:{type: String, require:true}
+        nombre:{type: String, require:true},
+        apellido:{type: String, require:true},
+        n_cuenta: {type: Number, require:true, unique:true},
+        edad:Number,
+        genero:String
     }
 );
 
-module.exports = mongoose.model('usuarios', UsuariosSchema);
+module.exports = mongoose.model('alumnos', UsuariosSchema);

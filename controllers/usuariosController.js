@@ -1,5 +1,6 @@
 const { validationResult } = require('express-validator');
 var Usuarios = require('../models/usuarios');
+var pasword =3423;
 //sendhelp
 var controller = {
     usuarios: function(req,res){
@@ -19,7 +20,7 @@ var controller = {
 
     usuario: function(req,res){
         let n_lista = req.params.n_lista;
-         
+        let variable =5; 
         Usuarios.findOne({n_cuenta: n_lista}).exec((err,usuario)=>{
             if(err) return res.status(500).json({
                 status:500,

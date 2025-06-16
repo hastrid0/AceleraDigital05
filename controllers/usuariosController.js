@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 var Usuarios = require('../models/usuarios');
-
+//sendhelp
 var controller = {
     usuarios: function(req,res){
         

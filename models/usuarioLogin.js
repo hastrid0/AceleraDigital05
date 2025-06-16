@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+//comentario2
 var UsuariosSchema = Schema(
     {
         mail:{type: String, require:true, unique:true},
